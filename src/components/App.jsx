@@ -1,6 +1,7 @@
 import React from 'react'
 import './style/App.css'
 import Todo from './Todo'
+import Info from './Info'
 
 class App extends React.Component {
     constructor(props) {
@@ -22,7 +23,12 @@ class App extends React.Component {
                     <div className="title">
                         <h1>React todo</h1>
                     </div>
-
+                    <div className="total">
+                        <Info
+                            total={todos.length}
+                            doneCount={todos.filter((todo) => todo.done).length}
+                        />
+                    </div>
                     <div className="input">
                         <div className="input__wrapper">
                             <div className="enter">
