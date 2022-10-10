@@ -1,7 +1,45 @@
-.todo__wrapper {
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inconsolata", monospace;
+  font-size: 20px;
+}
+
+.stat,
+h1 {
+  text-align: center;
+}
+
+.info {
   display: flex;
+  justify-content: space-around;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+}
+.main .main__wrapper {
+  width: 70vw;
 }
 
 .input__wrapper {
   display: flex;
+  justify-content: space-between;
+}
+.input__wrapper button {
+  border: 1px solid black;
+  height: 39px;
+  width: 39px;
+}
+.input__wrapper .enter {
+  width: 70vw;
+}
+.input__wrapper .enter input {
+  height: 35px;
+  width: 90%;
 }/*# sourceMappingURL=App.css.map */

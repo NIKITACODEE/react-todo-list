@@ -1,21 +1,38 @@
 import React from 'react'
 import './style/Todo.css'
 export default class Todo extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isHover: false,
+        }
+    }
     render() {
+        const { done, name } = this.props
         return (
-            <div className="todo">
-                <div className="todo__wrapper">
-                    <div className="todo_done">
+            <div
+                className={`todo__container ${done ? 'done' : ''}`}
+                onMouseEnter={this.handleMouseHover(true)}
+                onMouseLeave={this.handleMouseHover(false)}
+            >
+                <div className="container__wrapper">
+                    <div className="todo__input">
                         <input
                             type="checkbox"
-                            checked={this.props.done}
+                            checked={done}
                             onChange={this.handleCheck}
                         />
                     </div>
-
-                    <div className={this.props.done ? 'done' : ''}>
-                        <span className="todo_content">{this.props.name}</span>
+                    <div className="todo__name">
+                        <span>{name}</span>
                     </div>
+                </div>
+                <div className="todo__delete">
+                    {this.state.isHover && (
+                        <button className="delete" onClick={this.handleDelete}>
+                            <span role="img">&#10006;</span>
+                        </button>
+                    )}
                 </div>
             </div>
         )
@@ -25,4 +42,8 @@ export default class Todo extends React.Component {
         const done = e.target.checked
         this.props.onDone(done, this.props.name)
     }
+
+    handleDelete = () => this.props.onDelete(this.props.name)
+
+    handleMouseHover = (isHover) => () => this.setState({ isHover })
 }

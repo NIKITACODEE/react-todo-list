@@ -34,14 +34,17 @@ class App extends React.Component {
                             <div className="enter">
                                 <input
                                     type="text"
-                                    placeholder="todo"
                                     onChange={this.handleSetState}
                                     value={name}
                                 />
                             </div>
 
-                            <div className="buuton">
-                                <button onClick={this.handleAddTodo}>
+                            <div className="button">
+                                <button
+                                    onClick={this.handleAddTodo}
+                                    disabled={this.state.name.trim() === ''}
+                                    className="save"
+                                >
                                     Add
                                 </button>
                             </div>
@@ -54,6 +57,7 @@ class App extends React.Component {
                                 name={todo.name}
                                 done={todo.done}
                                 onDone={this.handleSetDone}
+                                onDelete={this.handleDelete}
                             />
                         ))}
                     </div>
@@ -71,11 +75,14 @@ class App extends React.Component {
     handleAddTodo = () => {
         const name = this.state.name.trim()
 
+        if (name === '') return
+
         this.setState({
             todos: this.state.todos.concat({ name, done: false }),
             name: '',
         })
     }
+
     handleSetDone = (done, name) => {
         this.setState({
             todos: this.state.todos.map((todo) =>
@@ -83,6 +90,11 @@ class App extends React.Component {
             ),
         })
     }
+
+    handleDelete = (name) =>
+        this.setState({
+            todos: this.state.todos.filter((todo) => todo.name !== name),
+        })
 }
 
 export default App

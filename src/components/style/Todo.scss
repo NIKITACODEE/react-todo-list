@@ -1,3 +1,39 @@
+$can-not-color: #fca5a5;
+$can-color: #86efac;
+$done: #cbd5e1;
+
 .done {
-    background-color: rgba(70, 255, 70, 0.444);
+    background-color: $done;
+    text-decoration: line-through;
+}
+.todo__container {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    span {
+        white-space: wrap;
+        line-break: anywhere;
+        max-width: 100%;
+    }
+}
+
+.save {
+    color: white;
+    background-color: $can-not-color;
+}
+
+.save:not(:disabled) {
+    background-color: $can-color;
+    color: white;
+}
+.delete {
+    border: none;
+    background-color: none;
+    height: 100%;
+}
+.container__wrapper {
+    display: flex;
+    width: 60vw;
 }
